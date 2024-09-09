@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView
 from .forms import LoginForm
-import views
+from . import views
 
 
 urlpatterns = [

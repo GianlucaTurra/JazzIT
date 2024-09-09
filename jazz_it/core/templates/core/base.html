@@ -9,7 +9,9 @@
     {% load static %}
     <script src="{% static 'js/htmx.min.js' %}" defer></script>
 </head>
-<body>
+<body class="bg-dark-first text-dark-fourth">
+    <button id="theme-toggle">Switch</button>
+    <script scr="{% static "js/theme_switch.js" %}"></script>
     {% block content %}{% endblock content %}
 </body>
 </html>
