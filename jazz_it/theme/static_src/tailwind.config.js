@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+  darkMode: 'selector',
   content: [
     /**
      * HTML. Paths to Django template files that will contain Tailwind CSS classes.
@@ -39,7 +40,7 @@ module.exports = {
      * Python: If you use Tailwind CSS classes in Python, uncomment the following line
      * and make sure the pattern below matches your project structure.
      */
-    // '../../**/*.py'
+    '../../**/*.py'
   ],
   theme: {
     extend: {

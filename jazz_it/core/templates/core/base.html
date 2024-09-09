@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
 {% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en" id="main">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +8,10 @@
     {% tailwind_css %}
     {% load static %}
     <script src="{% static 'js/htmx.min.js' %}" defer></script>
+    <script src="{% static 'js/theme_switch.js' %}" defer></script>
 </head>
-<body class="bg-dark-first text-dark-fourth">
-    <button id="theme-toggle">Switch</button>
-    <script scr="{% static "js/theme_switch.js" %}"></script>
+<body class="bg-light-first text-light-fourth dark:bg-dark-first dark:text-dark-fourth">
+    <button id="theme-toggle" onClick="changeTheme()">Switch</button>
     {% block content %}{% endblock content %}
 </body>
 </html>
