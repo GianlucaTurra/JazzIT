@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "JazzIT",
+            "database": "${workspaceFolder:JazzIT}/jazz_it/db.sqlite3"
+        }
+    ]
+}

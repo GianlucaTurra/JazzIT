@@ -1,4 +1,39 @@
-{% extends "core/base.html" %}
-{% block content %}
-    {% include "core/top_navigation.html" %}
+{% extends "core/base.html" %} 
+{% block content %} 
+{% include "core/top_navigation.html" %}
+<div class="flex justify-center py-16">
+    <ul class="w-2/3">
+      {% for sugg in suggestions %}
+        <li class="rounded-2xl shadow-xl">
+            <div class="p-3">
+                <h3 class="font-bold text-secondary mb-4">{{ sugg.user }} suggested</h3>
+                <h5 class="py-2">If you liked... </h5>
+                <iframe 
+                    class="align-bottom"
+                    title="base music"
+                    style="border-radius:12px" 
+                    src="https://open.spotify.com/embed/track/7ACxUo21jtTHzy7ZEV56vU?utm_source=generator" 
+                    width="100%" height="25%"
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy"></iframe>
+                <h5 class="py-2">You'll like... </h5>
+                <iframe
+                    title="suggested music" 
+                    style="border-radius:12px" 
+                    src="https://open.spotify.com/embed/track/4OROzZUy6gOWN4UGQVaZMF?utm_source=generator" 
+                    width="100%" height="25%" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy"></iframe>
+                {% if sugg.description and sugg.description != '' %}
+                    <p 
+                        onloaded="checkLength()" 
+                        class="font-light italic text-right">"{{ sugg.description }}"</p>
+                {% endif %}
+            </div>
+        </li>
+      {% endfor %}
+    </ul>
+</div>
 {% endblock content %}

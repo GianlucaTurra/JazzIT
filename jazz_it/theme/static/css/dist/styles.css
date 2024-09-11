@@ -801,6 +801,10 @@ html[data-theme="dark"] {
   position: static;
 }
 
+.float-right {
+  float: right;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -850,6 +854,10 @@ html[data-theme="dark"] {
   width: 0px;
 }
 
+.w-2\/3 {
+  width: 66.666667%;
+}
+
 .w-full {
   width: 100%;
 }
@@ -872,6 +880,10 @@ html[data-theme="dark"] {
 
 .justify-normal {
   justify-content: normal;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -900,6 +912,10 @@ html[data-theme="dark"] {
   border-radius: 0.75rem;
 }
 
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -920,6 +936,10 @@ html[data-theme="dark"] {
   background-color: var(--color-main);
 }
 
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
 .p-0 {
   padding: 0px;
 }
@@ -932,6 +952,10 @@ html[data-theme="dark"] {
   padding: 1.5rem;
 }
 
+.p-3 {
+  padding: 0.75rem;
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -940,6 +964,11 @@ html[data-theme="dark"] {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .py-2 {
@@ -958,6 +987,10 @@ html[data-theme="dark"] {
 
 .pt-6 {
   padding-top: 1.5rem;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .align-bottom {
@@ -982,8 +1015,34 @@ html[data-theme="dark"] {
   line-height: 1;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .font-semibold {
   font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-thin {
+  font-weight: 100;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .leading-normal {
