@@ -2,7 +2,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 
 
-INPUT_CLASSES = ''
+INPUT_CLASSES = 'border border-extra text-secondary rounded-md block w-full'
 
 
 class LoginForm(AuthenticationForm):

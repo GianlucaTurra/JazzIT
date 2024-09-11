@@ -4,16 +4,16 @@
 
 @layer base {
   html[data-theme="light"] {
-    --color-main: #F4F9F9;
-    --color-secondary: #CCF2F4;
-    --color-extra: #A4EBF3;
-    --color-highlight: #5c5c5c;
+    --color-main: #EFFFFB;
+    --color-secondary: #50D890;
+    --color-extra: #4F98CA;
+    --color-highlight: #272727;
   }
 
   html[data-theme="dark"] {
-    --color-main: #331d2c;
-    --color-secondary: #3F2E3E;
-    --color-extra: #A78295;
-    --color-highlight: #EFE1D1;
+    --color-main: #272727;
+    --color-secondary: #50D890;
+    --color-extra: #4F98CA;
+    --color-highlight: #EFFFFB;
   }
 }
