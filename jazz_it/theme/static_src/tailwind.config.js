@@ -40,24 +40,14 @@ module.exports = {
      * Python: If you use Tailwind CSS classes in Python, uncomment the following line
      * and make sure the pattern below matches your project structure.
      */
-    '../../**/*.py'
+    '../../**/**/*.py'
   ],
   theme: {
-    extend: {
-      colors: {
-        dark: {
-          first: "#331D2C",
-          second: "#3F2E3E",
-          third: "#A78295",
-          fourth: "#EFE1D1",
-        },
-        light: {
-          first: "#F4F9F9",
-          second: "#CCF2F4",
-          third: "#A4EBF3",
-          fourth: "#AAAAAA",
-        },
-      },
+    colors: {
+      main: 'var(--color-main)',
+      secondary: 'var(--color-secondary)',
+      extra: 'var(--color-extra)',
+      highlight: 'var(--color-highlight)'
     },
   },
   plugins: [

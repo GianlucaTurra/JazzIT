@@ -1,16 +1,16 @@
 function loadColorTheme() {
-    let colorTheme = localStorage.getItem('theme');
+    let colorTheme = localStorage.getItem('data-theme');
     if (colorTheme === null) {
         colorTheme = 'light';
     }
-    document.getElementById('main').classList.add(colorTheme);
+    document.getElementById('main').setAttribute('data-theme', colorTheme);
 }
 
 function changeTheme() {
     const html = document.getElementById('main');
-    const newTheme = html.classList.contains('light') ? 'dark' : 'light';
-    html.classList.remove('light', 'dark');
-    html.classList.add(newTheme);
+    const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('data-theme', newTheme);
 }
 
 window.onload = function() {

@@ -1,6 +1,6 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
-<html lang="en" id="main">
+<html lang="en" id="main" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
     <script src="{% static 'js/htmx.min.js' %}" defer></script>
     <script src="{% static 'js/theme_switch.js' %}" defer></script>
 </head>
-<body class="bg-light-first text-light-fourth dark:bg-dark-first dark:text-dark-fourth">
+<body class="bg-main text-highlight">
     <button id="theme-toggle" onClick="changeTheme()">Switch</button>
     {% block content %}{% endblock content %}
 </body>
