@@ -2,13 +2,15 @@
     <div class="p-2 mr-2 font-semibold text-extra">
         <button id="theme-toggle" onClick="changeTheme()">Switch</button>
     </div>
-    <div class="group p-2 bg-extra flex align-bottom justify-center rounded-3xl cursor-pointer shadow-xl">
-        <span class="material-symbols-sharp text-2xl text-main">search</span>
-        <input 
-            type="text" 
-            placeholder="Search..." 
-            class="border-none p-0 placeholder:text-main w-0 duration-700 text-main group-hover:w-96"
-            style="background-color: transparent">
+    <div class="group bg-extra rounded-3xl cursor-pointer mx-auto">
+        <div class="relative flex items-center focus-within:shadow-lg overflow-hidden">
+            <span class="material-symbols-sharp text-2xl text-main place-items-center p-2">search</span>
+            <input 
+                type="search" 
+                placeholder="Search..." 
+                class="peer h-full border-0 outline-none placeholder:text-main w-0 duration-700 text-main group-hover:w-96"
+                style="background-color: transparent">
+        </div>
     </div>
     <div class="p-2 mr-2 font-semibold text-extra">
         {% if request.user.is_authenticated %}
