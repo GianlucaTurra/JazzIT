@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jazz It!</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp"/>
-    <link rel="stylesheet" href="{% static "css/input_boxes.css" %}">
     {% tailwind_css %}
     {% load static %}
+    <link rel="stylesheet" href="{% static "css/input_boxes.css" %}" defer>
     <script src="{% static 'js/htmx.min.js' %}" defer></script>
     <script src="{% static 'js/theme_switch.js' %}" defer></script>
     {% block extra %}{% endblock extra %}
 </head>
 <body class="bg-main text-highlight font-sans">
-    {% block content %}{% endblock content %}
+    <div>
+        {% block content %}{% endblock content %}
+    </div>
 </body>
 </html>
