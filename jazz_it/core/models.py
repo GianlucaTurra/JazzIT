@@ -7,6 +7,7 @@ from django_extensions.db.models import TimeStampedModel
 
 from utils import abstract_models 
 
+
 class Suggestion(abstract_models.Model, TimeStampedModel):
 
     user = models.ForeignKey(User, verbose_name=_("Created by"), on_delete=models.CASCADE)
