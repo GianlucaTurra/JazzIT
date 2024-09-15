@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Suggestion
+from .models import MusicAdvise
 
 
-admin.site.register(Suggestion)
+admin.site.register(MusicAdvise)

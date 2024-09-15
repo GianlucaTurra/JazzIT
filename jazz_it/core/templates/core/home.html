@@ -3,18 +3,18 @@
 {% include "core/top_navigation.html" %}
 <div class="flex justify-center py-16">
     <ul class="w-2/3">
-        {% for sugg in suggestions %}
+        {% for advice in music_advices %}
         <li class="rounded-2xl shadow-xl">
             <div class="p-3">
-                <h3 class="font-bold text-secondary mb-4">{{ sugg.user }} suggested</h3>
+                <h3 class="font-bold text-secondary mb-4">{{ advice.user }} suggested</h3>
                 <h5 class="py-2">If you liked... </h5>
-                {{ sugg.base_music }}
+                {{ adivce.base_music }}
                 <h5 class="py-2">You'll like... </h5>
-                {{ sugg.suggested_music }}
-                {% if sugg.description and sugg.description != '' %}
+                {{ advice.advice }}
+                {% if advice.description and advice.description != '' %}
                     <p 
                         onloaded="checkLength()" 
-                        class="font-light italic text-right">"{{ sugg.description }}"</p>
+                        class="font-light italic text-right">"{{ advice.description }}"</p>
                 {% endif %}
             </div>
         </li>
