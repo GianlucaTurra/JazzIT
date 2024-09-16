@@ -3,14 +3,15 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
-from .models import MusicAdvise
-from .modules.views_utils import Templates
+from .models import MusicAdvice
+from .forms import MusicAdviceForm
+from .modules.views_utils import Templates, save_new_music_advice
 
 
 # Sample view for basic testing
 # TODO: implement a proper home
 def home(request: HttpRequest) -> HttpResponse:
-    music_advices = MusicAdvise.objects.all()
+    music_advices = MusicAdvice.objects.all()
     return render(request, Templates.HOME, {'music_advices': music_advices})
 
 
@@ -23,16 +24,18 @@ def logout_user(request: HttpRequest):
 @login_required
 def add_music_advice(request: HttpRequest) -> HttpResponse:
     if request.method == 'GET':
-        return render(request, Templates.ADD_MUSIC_ADVICE)
+        form = MusicAdviceForm()
+        return render(request, Templates.ADD_MUSIC_ADVICE, {'form': form})
     if request.method == 'POST':
-        # TODO handle request properly with a function
-        return render(request, Templates.ADD_MUSIC_ADVICE)
+        if not save_new_music_advice(request):
+            return HttpResponse(status=400)
+        return HttpResponse(satus=200)
     return HttpResponse(status=405)
 
 
 @login_required
 def edit_music_advice(request: HttpRequest, pk: str) -> HttpResponse:
-    music_advice = get_object_or_404(MusicAdvise, pk)
+    music_advice = get_object_or_404(MusicAdvice, pk)
     if music_advice.user != request.user:
         return HttpResponse(status=403)
     if request.method == 'GET':
@@ -45,7 +48,7 @@ def edit_music_advice(request: HttpRequest, pk: str) -> HttpResponse:
 
 @login_required
 def delete_music_advice(request: HttpRequest, pk: str) -> HttpResponse:
-    music_advice = get_object_or_404(MusicAdvise, pk)
+    music_advice = get_object_or_404(MusicAdvice, pk)
     if music_advice.user != request.user and not request.user.is_staff: # type: ignore
         return HttpResponse(status=403)
     if request.method != 'DELETE':
