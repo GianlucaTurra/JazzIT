@@ -27,9 +27,10 @@ def add_music_advice(request: HttpRequest) -> HttpResponse:
         form = MusicAdviceForm()
         return render(request, Templates.ADD_MUSIC_ADVICE, {'form': form})
     if request.method == 'POST':
-        if not save_new_music_advice(request):
+        is_save_successful = save_new_music_advice(request)
+        if not is_save_successful:
             return HttpResponse(status=400)
-        return HttpResponse(satus=200)
+        return HttpResponse(status=200)
     return HttpResponse(status=405)
 
 

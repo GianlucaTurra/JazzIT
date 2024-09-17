@@ -20,7 +20,7 @@ def save_new_music_advice(request: HttpRequest) -> bool:
     form: ModelForm = MusicAdviceForm(request.POST)
     if not form.is_valid():
         return False
-    music_advice: MusicAdvice = form.save()
+    music_advice: MusicAdvice = form.save(commit=False)
     music_advice.user = request.user # type: ignore
     music_advice.save()
     return True

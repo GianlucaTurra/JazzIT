@@ -5,7 +5,7 @@ from django import forms
 from .models import MusicAdvice
 
 
-INPUT_CLASSES = 'border border-extra text-secondary rounded-lg block w-full'
+INPUT_CLASSES = 'border border-extra text-main rounded-lg block w-full'
 
 
 class LoginForm(AuthenticationForm):
@@ -28,10 +28,28 @@ class MusicAdviceForm(forms.ModelForm):
     class Meta:
         model = MusicAdvice
         fields = ('base', 'advice', 'description', 'category')
-        """ labels = {
+        widgets = {
+            'base': forms.TextInput(attrs={
+                'class': INPUT_CLASSES,
+                'placeholder': 'What you liked'
+            }),
+            'advice': forms.TextInput(attrs={
+                'class': INPUT_CLASSES,
+                'placeholder': 'What you advice'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': INPUT_CLASSES,
+                'placeholder': 'Why do you think it\'s a good advice?'
+            }),
+            'category': forms.Select(attrs={
+                'class': INPUT_CLASSES,
+                
+            })
+        }
+        labels = {
             'base': _('If you like'),
             'advice': _('You might like'),
             'description': _('Because'),
             'category': _('Category'),
-        } """
+        }
 
