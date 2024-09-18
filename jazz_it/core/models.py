@@ -17,8 +17,8 @@ class AdviceCategory(models.TextChoices):
 class MusicAdvice(abstract_models.Model, TimeStampedModel):
 
     user = models.ForeignKey(User, verbose_name=_("Created by"), on_delete=models.CASCADE)
-    base = models.CharField(_("If you liked"), max_length=50, null=False, blank=False)
-    advice = models.CharField(_("You'll like"), max_length=50, null=False, blank=False)
+    base = models.CharField(_("If you liked"), max_length=100, null=False, blank=False)
+    advice = models.CharField(_("You'll like"), max_length=100, null=False, blank=False)
     description = models.TextField(_("Additional description"))
     category = models.CharField(_("Advice category"), max_length=10, choices=AdviceCategory, default=AdviceCategory.TRACK)
 

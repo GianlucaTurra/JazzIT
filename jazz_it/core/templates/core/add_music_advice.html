@@ -1,7 +1,12 @@
 {% extends "core/base.html" %}
 {% block content %}
 {% load static %} 
-<form action="{% url "core:add_music_advice" %}" method="post" class="flex flex-col w-1/2 ">
+{% if pk %}
+  {% url submit pk as the_url %}
+{% else %}
+  {% url submit as the_url %}
+{% endif %}
+<form action="{{ the_url }}" method="post" class="flex flex-col w-1/2 ">
   {% csrf_token %}
   {{ form }}
   {% if form.errors or form.non_field_errors %}
@@ -10,6 +15,6 @@
     {% endfor %}
     {{ form.non_field_errors }}
   {% endif %}
-  <button class="bg-extra mt-4 p-2 rounded-2xl">Create</button>
+  <button class="bg-extra mt-4 p-2 rounded-2xl">Submit</button>
 </form>
 {% endblock content %}

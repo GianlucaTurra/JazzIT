@@ -8,13 +8,21 @@
             <div class="p-3">
                 <h3 class="font-bold text-secondary mb-4">{{ advice.user }} suggested</h3>
                 <h5 class="py-2">If you liked... </h5>
-                {{ adivce.base_music }}
+                {{ advice.base }}
                 <h5 class="py-2">You'll like... </h5>
                 {{ advice.advice }}
                 {% if advice.description and advice.description != '' %}
                     <p 
                         onloaded="checkLength()" 
                         class="font-light italic text-right">"{{ advice.description }}"</p>
+                {% endif %}
+                {% if request.user == advice.user %}
+                    <a href="{% url "core:edit_music_advice" advice.id %}" class="text-xs">
+                        <span class="material-symbols-sharp">edit</span>
+                    </a>
+                    <a hx-delete="{% url "core:delete_music_advice" advice.id %}" class="text-xs cursor-pointer">
+                        <span class="material-symbols-sharp">delete</span>
+                    </a>
                 {% endif %}
             </div>
         </li>

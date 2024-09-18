@@ -13,7 +13,7 @@
     <script src="{% static 'js/theme_switch.js' %}" defer></script>
     {% block extra %}{% endblock extra %}
 </head>
-<body class="bg-main text-highlight font-sans">
+<body class="bg-main text-highlight font-sans" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <div>
         {% block content %}{% endblock content %}
     </div>

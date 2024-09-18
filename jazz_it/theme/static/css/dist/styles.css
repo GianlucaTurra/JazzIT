@@ -874,6 +874,10 @@ html[data-theme="dark"] {
   width: 25%;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -1015,6 +1019,11 @@ html[data-theme="dark"] {
   line-height: 1;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1053,6 +1062,10 @@ html[data-theme="dark"] {
 
 .text-secondary {
   color: var(--color-secondary);
+}
+
+.underline {
+  text-decoration-line: underline;
 }
 
 .shadow-xl {

@@ -24,3 +24,11 @@ def save_new_music_advice(request: HttpRequest) -> bool:
     music_advice.user = request.user # type: ignore
     music_advice.save()
     return True
+
+
+def update_music_advice(request: HttpRequest, music_advice: MusicAdvice) -> bool:
+    form: ModelForm = MusicAdviceForm(request.POST, instance=music_advice)
+    if not form.is_valid():
+        return False
+    form.save()
+    return True
