@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 {% block content %}
 {% load static %} 
-<form action="{% url "core:add_music_advice" %}" method="post">
+<form action="{% url "core:add_music_advice" %}" method="post" class="flex flex-col w-1/2 ">
   {% csrf_token %}
   {{ form }}
   {% if form.errors or form.non_field_errors %}
