@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.forms import ModelForm
 
 from ..models import MusicAdvice
-from ..forms import MusicAdviceForm
+from ..forms import MusicAdviceForm, SignUpForm
 
 
 class Templates:
@@ -13,6 +13,15 @@ class Templates:
     HOME = 'core/home.html'
     ADD_MUSIC_ADVICE = 'core/add_music_advice.html'
     EDIT_MUSIC_ADVICE = 'core/edit_music_advice.html'
+    SIGNUP = 'core/signup.html'
+
+
+def create_new_user(request: HttpRequest) -> bool:
+    form = SignUpForm(request.POST)
+    if not form.is_valid():
+        return False
+    form.save()
+    return True
 
 
 # TODO: il nome e la gestione sono da rivedere

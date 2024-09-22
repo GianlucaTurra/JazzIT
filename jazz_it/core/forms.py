@@ -1,5 +1,6 @@
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
 from django import forms
 
 from .models import MusicAdvice
@@ -21,6 +22,34 @@ class LoginForm(AuthenticationForm):
         'placeholder': 'Password',
         'class': INPUT_CLASSES
     }))
+
+
+class SignUpForm(UserCreationForm):
+    
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
+
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'class': INPUT_CLASSES, 'placeholder': _('Your username')}), 
+        label=_('Username'),
+        required=True
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={'class': INPUT_CLASSES, 'placeholder': _('Enter your email')}), 
+        label=_('Email'),
+        required=True
+    )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': INPUT_CLASSES, 'placeholder': _('Enter your password')}), 
+        label=_('Password'), 
+        required=True
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': INPUT_CLASSES, 'placeholder': _('Repeat your password')}), 
+        label=_('Repeat password'),
+        required=True
+    )
 
 
 class MusicAdviceForm(forms.ModelForm):

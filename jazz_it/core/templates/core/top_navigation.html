@@ -16,6 +16,7 @@
             <a href="{% url "core:logout" %}">Sign Out</a>
         {% else %}
             <a href="{% url "core:login" %}">Sign In</a>
+            {% comment %} <a href="{% url "core:signin" %}">Register</a> {% endcomment %}
         {% endif %}
     </div>
 </div>

@@ -13,4 +13,5 @@ urlpatterns = [
     path('add_ma/', views.add_music_advice, name='add_music_advice'),
     path('edit_ma/<uuid:pk>', views.edit_music_advice, name='edit_music_advice'),
     path('delete_ma/<uuid:pk>', views.delete_music_advice, name='delete_music_advice'),
+    path('signup', views.signup, name='signup'),
 ]
