@@ -10,8 +10,8 @@ from utils import abstract_models
 
 class AdviceCategory(models.TextChoices):
     ARTIST = 'AR', _('Artist')
-    ALBUM = 'AL', 'Album'
-    TRACK = 'TR', 'Track'
+    ALBUM = 'AL', _('Album')
+    TRACK = 'TR', _('Track')
 
 
 class MusicAdvice(abstract_models.Model, TimeStampedModel):
