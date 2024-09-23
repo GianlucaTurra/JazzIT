@@ -914,10 +914,6 @@ html[data-theme="dark"] {
   justify-content: space-between;
 }
 
-.gap-2 {
-  gap: 0.5rem;
-}
-
 .gap-1 {
   gap: 0.25rem;
 }
@@ -956,12 +952,12 @@ html[data-theme="dark"] {
   border-color: var(--color-extra);
 }
 
-.border-highlight {
-  border-color: var(--color-highlight);
-}
-
 .bg-extra {
   background-color: var(--color-extra);
+}
+
+.bg-highlight {
+  background-color: var(--color-highlight);
 }
 
 .bg-main {
@@ -970,10 +966,6 @@ html[data-theme="dark"] {
 
 .bg-secondary {
   background-color: var(--color-secondary);
-}
-
-.bg-highlight {
-  background-color: var(--color-highlight);
 }
 
 .p-2 {

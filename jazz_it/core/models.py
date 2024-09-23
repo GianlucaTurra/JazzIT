@@ -32,3 +32,8 @@ class MusicAdvice(abstract_models.Model, TimeStampedModel):
     def get_absolute_url(self):
         return reverse("_detail", kwargs={"pk": self.pk})
     
+
+class UserProfile(abstract_models.Model, TimeStampedModel):
+
+    user = models.ForeignKey(User, verbose_name=_("Created by"), on_delete=models.CASCADE)
+    picture = models.ImageField(_("Profile picture"), default='empty.png', blank=True)
