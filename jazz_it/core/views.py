@@ -3,16 +3,22 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
-from .models import MusicAdvice
+from .models import MusicAdvice, UserProfile
 from .forms import MusicAdviceForm, SignUpForm
 from .modules.views_utils import Templates, save_new_music_advice, update_music_advice, create_new_user
 
 
 # Sample view for basic testing
 # TODO: implement a proper home
+# TODO: clearly needs refactoring
 def home(request: HttpRequest) -> HttpResponse:
     music_advices = MusicAdvice.objects.all()
-    return render(request, Templates.HOME, {'music_advices': music_advices})
+    data: dict[str, object] = {'music_advices': music_advices}
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(pk=request.user)
+        data['profile'] = profile
+        data['music_advices'] = music_advices.exclude(user=request.user)
+    return render(request, Templates.HOME, data)
 
 
 # TODO: better this than a series of if checks?
@@ -26,6 +32,13 @@ def signup(request: HttpRequest) -> HttpResponse:
                 return HttpResponse(status=400)
             return redirect('/login/')
     return HttpResponse(status=405)
+
+
+def profile(request: HttpRequest) -> HttpResponse:
+    ...
+    """ match request.method:
+        case 'GET':
+            return render(request, Templates.PROFILE, {'profile': profile}) """
 
 
 @login_required

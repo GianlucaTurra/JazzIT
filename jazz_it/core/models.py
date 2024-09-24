@@ -33,7 +33,7 @@ class MusicAdvice(abstract_models.Model, TimeStampedModel):
         return reverse("_detail", kwargs={"pk": self.pk})
     
 
-class UserProfile(abstract_models.Model, TimeStampedModel):
+class UserProfile(TimeStampedModel):
 
-    user = models.ForeignKey(User, verbose_name=_("Created by"), on_delete=models.CASCADE)
-    picture = models.ImageField(_("Profile picture"), default='empty.png', blank=True)
+    user = models.OneToOneField(User, verbose_name=_("Owned by"), on_delete=models.CASCADE, primary_key=True)
+    picture = models.ImageField(_("Profile picture"), default='default.png', blank=True)

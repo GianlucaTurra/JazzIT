@@ -818,6 +818,11 @@ html[data-theme="dark"] {
   margin-right: auto;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -866,6 +871,15 @@ html[data-theme="dark"] {
   height: 100vh;
 }
 
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
 .w-0 {
   width: 0px;
 }
@@ -880,6 +894,10 @@ html[data-theme="dark"] {
 
 .w-full {
   width: 100%;
+}
+
+.w-10 {
+  width: 2.5rem;
 }
 
 .cursor-pointer {
@@ -940,8 +958,16 @@ html[data-theme="dark"] {
   border-radius: 0.5rem;
 }
 
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .border {
   border-width: 1px;
+}
+
+.border-2 {
+  border-width: 2px;
 }
 
 .border-b {

@@ -11,12 +11,14 @@
                 style="background-color: transparent;">
         </div>
     </div>
-    <div class="p-2 mr-2 font-semibold text-extra">
+    <div class="flex p-2 mr-2 font-semibold text-extra">
         {% if request.user.is_authenticated %}
+            <a href="#" class="border-2 border-extra flex items-center justify-center w-10 h-10 mx-2 overflow-hidden rounded-full">
+                <img src="{{ profile.picture.url }}" title="{{ profile.user.username }}">
+            </a>
             <a href="{% url "core:logout" %}">Sign Out</a>
         {% else %}
             <a href="{% url "core:login" %}">Sign In</a>
-            {% comment %} <a href="{% url "core:signin" %}">Register</a> {% endcomment %}
         {% endif %}
     </div>
 </div>

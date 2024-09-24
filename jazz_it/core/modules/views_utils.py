@@ -1,7 +1,8 @@
 from django.http import HttpRequest
 from django.forms import ModelForm
+from django.contrib.auth.models import User
 
-from ..models import MusicAdvice
+from ..models import MusicAdvice, UserProfile
 from ..forms import MusicAdviceForm, SignUpForm
 
 
@@ -20,7 +21,9 @@ def create_new_user(request: HttpRequest) -> bool:
     form = SignUpForm(request.POST)
     if not form.is_valid():
         return False
-    form.save()
+    user: User = form.save()
+    profile = UserProfile(user=user)
+    profile.save()
     return True
 
 
