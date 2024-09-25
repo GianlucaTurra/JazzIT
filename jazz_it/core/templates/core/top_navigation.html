@@ -13,12 +13,41 @@
     </div>
     <div class="flex p-2 mr-2 font-semibold text-extra">
         {% if request.user.is_authenticated %}
-            <a href="#" class="border-2 border-extra flex items-center justify-center w-10 h-10 mx-2 overflow-hidden rounded-full">
+        <div class="realtive">
+            <input type="checkbox" class="opacity-0 absolute" >
+            <div class="border-2 border-extra flex items-center justify-center w-10 h-10 mx-2 overflow-hidden rounded-full" onClick="showMenu()">
                 <img src="{{ profile.picture.url }}" title="{{ profile.user.username }}">
-            </a>
-            <a href="{% url "core:logout" %}">Sign Out</a>
+            </div>
+            <div id="usermenu" class="mt-1 mr-2 right-1 top-full min-w-max shadow opacity-0 transition delay-75 ease-in-out z-10">
+                <ul class="block text-right">
+                    <li>
+                        <a href="#" class="block pr-2 border-r-4 border-transparent hover:text-secondary">
+                            <span class="material-symbols-sharp text-2xl place-items-center p-2">account_circle</span>
+                            Profile
+                        </a>
+                    </li>
+                    <hr class="border">
+                    <li>
+                        <a href="{% url "core:logout" %}" class="block pr-2 border-r-4 border-transparent hover:text-secondary">
+                            <span class="material-symbols-sharp text-2xl place-items-center p-2">logout</span>
+                            Sign Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         {% else %}
             <a href="{% url "core:login" %}">Sign In</a>
         {% endif %}
     </div>
 </div>
+<script>
+    function showMenu() {
+        const opacity = document.getElementById("usermenu").style.opacity;
+        if (opacity == 1) {
+            document.getElementById("usermenu").style.opacity = 0;
+        } else {
+            document.getElementById("usermenu").style.opacity = 1;
+        }
+    }
+</script>
