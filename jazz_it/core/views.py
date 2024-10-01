@@ -36,9 +36,6 @@ def signup(request: HttpRequest) -> HttpResponse:
 
 def profile(request: HttpRequest) -> HttpResponse:
     ...
-    """ match request.method:
-        case 'GET':
-            return render(request, Templates.PROFILE, {'profile': profile}) """
 
 
 @login_required
