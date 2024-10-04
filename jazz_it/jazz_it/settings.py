@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'django_extensions',
     'core',
+    'spotify.apps.SpotifyConfig'
 ]
 
 MIDDLEWARE = [
