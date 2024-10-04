@@ -1,6 +1,13 @@
 {% extends "core/base.html" %} 
 {% block content %} 
 {% include "core/top_navigation.html" %}
+<div class="flex justify-center mt-8 py-2">
+    <a hx-get="{% url 'core:add_music_advice' %}" 
+       hx-target="body"
+       hx-swap="beforeend"
+       class="text-center shadow-xl px-4 py-1 rounded-2xl font-semibold text-secondary cursor-pointer"
+    >Any new advice you'd like to share?</a>
+</div>
 <div class="flex justify-center py-16">
     <ul class="w-2/3">
         {% for advice in music_advices %}

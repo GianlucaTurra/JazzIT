@@ -6,7 +6,7 @@ from django import forms
 from .models import MusicAdvice
 
 
-INPUT_CLASSES = 'border border-extra text-main rounded-lg block w-full'
+INPUT_CLASSES = 'border border-extra rounded-lg block w-full'
 
 
 class LoginForm(AuthenticationForm):
