@@ -17,8 +17,7 @@ class Templates:
     SIGNUP = 'core/signup.html'
 
 
-def create_new_user(request: HttpRequest) -> bool:
-    form = SignUpForm(request.POST)
+def create_new_user(form: SignUpForm) -> bool:
     if not form.is_valid():
         return False
     user: User = form.save()

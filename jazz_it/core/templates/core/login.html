@@ -1,18 +1,16 @@
 {% extends "core/base.html" %}
 
 {% block content %}
-    <div class="px-6 py-8 flex flex-col items-center justify-normal md:h-screen mx-auto text-highlight">
+    <div class="px-6 py-8 flex flex-col items-center justify-normal md:h-screen mx-auto">
         <div class="p-6 space-y-4 w-full md:mt-0 sm:max-w-md">
             <form action="/login/" method="post" class="rounded-2xl px-6 pt-6 pb-8 mb-4 bg-extra shadow-xl">
                 {% csrf_token %}
                 <div class="mb-4">
                     <label for="username" class="block text-m font-semibold mb-2">Username</label>
-                    <!--INPUT-->
                     {{ form.username }}
                 </div>
                 <div class="mb-4">
                     <label for="password" class="block text-m font-semibold mb-2">Password</label>
-                    <!--INPUT-->
                     {{ form.password }}
                 </div>
                 <div class="flex align-middle justify-center">

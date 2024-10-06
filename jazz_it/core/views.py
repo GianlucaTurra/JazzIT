@@ -28,8 +28,9 @@ def signup(request: HttpRequest) -> HttpResponse:
             form = SignUpForm()
             return render(request, Templates.SIGNUP, {'form': form})
         case 'POST':
-            if not create_new_user(request):
-                return HttpResponse(status=400)
+            form = SignUpForm(request.POST)
+            if not create_new_user(form):
+                return render(request, Templates.SIGNUP, {'form': form})
             return redirect('/login/')
     return HttpResponse(status=405)
 
