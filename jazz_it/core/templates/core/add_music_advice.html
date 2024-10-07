@@ -1,5 +1,8 @@
-<dialog open class="bg-main text-highlight font-sans flex flex-col w-1/2">
+<div>
     {% load static %}
+    <span class="material-symbols-sharp text-2xl text-highlight place-items-center p-2 cursor-pointer"
+          onclick="closeDialog()"
+    >close</span>
     {% if pk %}
         {% url 'submit' pk as the_url %}
     {% else %}
@@ -16,4 +19,9 @@
         {% endif %}
         <button class="bg-extra mt-4 p-2 rounded-2xl">Submit</button>
     </form>
-</dialog>
+</div>
+<script>
+    function closeDialog() {
+        dialog.close();
+    }
+</script>
