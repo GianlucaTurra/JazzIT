@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django import forms
 
 from .models import MusicAdvice
-
+from .validators import validate_email
 
 INPUT_CLASSES = 'border border-extra rounded-lg block w-full text-inputs'
 
@@ -38,7 +38,8 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': INPUT_CLASSES, 'placeholder': _('Enter your email')}), 
         label=_('Email'),
-        required=True
+        required=True,
+        validators=[validate_email]
     )
     password1 = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': INPUT_CLASSES, 'placeholder': _('Enter your password')}), 

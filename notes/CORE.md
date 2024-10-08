@@ -10,7 +10,7 @@ CORE
 3. Logout a user
 ----------------------------------------------
 #### User Model
-- [ ] User email should be unique
+- [x] User email should be unique
   
 #### User Signup
 - [x] Automated login after signup

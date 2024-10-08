@@ -1,10 +1,7 @@
-from django.test import TestCase
-
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-
-from core.models import CustomUser
 
 
 class SignUpViewTests(TestCase):
@@ -28,7 +25,7 @@ class SignUpViewTests(TestCase):
             'email': 'newuser@example.com',
         }
         response = self.client.post(self.signup_url, data=valid_data)
-        self.assertTrue(CustomUser.objects.filter(username='newuser').exists())
+        self.assertTrue(User.objects.filter(username='newuser').exists())
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/')
         # Check that the user is logged in
@@ -44,7 +41,7 @@ class SignUpViewTests(TestCase):
             'email': 'newuser@example.com',
         }
         response = self.client.post(self.signup_url, data=invalid_data)
-        self.assertFalse(CustomUser.objects.filter(username='newuser').exists())
+        self.assertFalse(User.objects.filter(username='newuser').exists())
         self.assertEqual(response.status_code, 200)  # Should render the form again.
         self.assertTemplateUsed(response, 'core/signup.html')
         self.assertIn('form', response.context)
@@ -52,7 +49,7 @@ class SignUpViewTests(TestCase):
 
     def test_signup_post_duplicate_user(self):
         """Test that trying to sign up with an existing username fails."""
-        CustomUser.objects.create_user(username='existinguser', password='password123')
+        User.objects.create_user(username='existinguser', password='password123')
         duplicate_data = {
             'username': 'existinguser',  # This username already exists
             'password1': 'newpassword123',
@@ -60,22 +57,22 @@ class SignUpViewTests(TestCase):
             'email': 'existinguser@example.com',
         }
         response = self.client.post(self.signup_url, data=duplicate_data)
-        self.assertEqual(CustomUser.objects.filter(username='existinguser').count(), 1)
+        self.assertEqual(User.objects.filter(username='existinguser').count(), 1)
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
         self.assertTrue(response.context['form'].errors)
 
-    # def test_signup_post_duplicate_email(self):
-    #     """Test that trying to sign up with an existing email fails."""
-    #     CustomUser.objects.create_user(username='existinguser', password='password123', email='existinguser@example.com')
-    #     duplicate_data = {
-    #         'username': 'existinguser2',
-    #         'password1': 'newpassword123',
-    #         'password2': 'newpassword123',
-    #         'email': 'existinguser@example.com',
-    #     }
-    #     response = self.client.post(self.signup_url, data=duplicate_data)
-    #     self.assertEqual(CustomUser.objects.filter(email='existinguser@example.com').count(), 1)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertIn('form', response.context)
-    #     self.assertTrue(response.context['form'].errors)
+    def test_signup_post_duplicate_email(self):
+        """Test that trying to sign up with an existing email fails."""
+        User.objects.create_user(username='existinguser', password='password123', email='existinguser@example.com')
+        duplicate_data = {
+            'username': 'existinguser2',
+            'password1': 'newpassword123',
+            'password2': 'newpassword123',
+            'email': 'existinguser@example.com',
+        }
+        response = self.client.post(self.signup_url, data=duplicate_data)
+        self.assertEqual(User.objects.filter(email='existinguser@example.com').count(), 1)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('form', response.context)
+        self.assertTrue(response.context['form'].errors)
