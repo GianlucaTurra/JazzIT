@@ -1,7 +1,7 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
 
 from .models import MusicAdvice, UserProfile
 from .forms import MusicAdviceForm, SignUpForm
@@ -15,8 +15,8 @@ def home(request: HttpRequest) -> HttpResponse:
     music_advices = MusicAdvice.objects.all()
     data: dict[str, object] = {'music_advices': music_advices}
     if request.user.is_authenticated:
-        profile = UserProfile.objects.get(pk=request.user)
-        data['profile'] = profile
+        user_profile = UserProfile.objects.get(pk=request.user)
+        data['profile'] = user_profile
         data['music_advices'] = music_advices.exclude(user=request.user)
     return render(request, Templates.HOME, data)
 
@@ -31,7 +31,14 @@ def signup(request: HttpRequest) -> HttpResponse:
             form = SignUpForm(request.POST)
             if not create_new_user(form):
                 return render(request, Templates.SIGNUP, {'form': form})
-            return redirect('/login/')
+            username = request.POST['username']
+            password = request.POST['password1']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+            else:
+                return render(request, Templates.SIGNUP, {'form': form})
+            return redirect('/')
     return HttpResponse(status=405)
 
 
