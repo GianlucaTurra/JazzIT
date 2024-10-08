@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 
 jazz_it/db.sqlite3
+/notes.sqlite
