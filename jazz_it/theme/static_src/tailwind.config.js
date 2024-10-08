@@ -48,8 +48,8 @@ module.exports = {
       secondary: 'var(--color-secondary)',
       extra: 'var(--color-extra)',
       highlight: 'var(--color-highlight)',
-      pale: 'var(--color-pale)',
-      input: 'var(--color-input)'
+      input: 'var(--color-input)',
+      error: 'var(--color-error)'
     },
   },
   plugins: [

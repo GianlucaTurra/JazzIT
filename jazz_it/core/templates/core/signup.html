@@ -8,12 +8,12 @@
                 {% csrf_token %}
                 {% for field in form %}
                     <div class="mb-2">
-                        <label for="" class="font-semibold" style="color: #EFFFFB">{{ field.label }}</label>
+                        <label for="" class="field-label font-semibold">{{ field.label }}</label>
                         {{ field }}
                     </div>
                 {% endfor %}
                 {% if form.errors or form.non_field_errors %}
-                    <div class="text-secondary font-semibold">
+                    <div class="font-semibold">
                         {% for field in form %}
                             {{ field.errors }}
                         {% endfor %}
@@ -28,4 +28,13 @@
             </form>
         </div>
     </div>
+    <style>
+    {#TODO: Why the fuck does it not work with the custom class?#}
+        .field-label {
+            color: var(--color-label);
+        }
+        .errorlist { /* django class for form's errors */
+            color: var(--color-error);
+        }
+    </style>
 {% endblock content %}

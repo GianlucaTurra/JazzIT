@@ -8,8 +8,9 @@
     --color-secondary: #50D890;
     --color-extra: #4F98CA;
     --color-highlight: #272727;
-    --color-pale: #EFFFFB;
+    --color-label: #EFFFFB;
     --color-input: #272727;
+    --color-error: #192965;
   }
 
   html[data-theme="dark"] {
@@ -17,7 +18,8 @@
     --color-secondary: #50D890;
     --color-extra: #4F98CA;
     --color-highlight: #EFFFFB;
-    --color-pale: #EFFFFB;
+    --color-label: #EFFFFB;
     --color-input: #272727;
+    --color-error: #192965;
   }
 }
