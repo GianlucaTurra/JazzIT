@@ -5,7 +5,7 @@ from django.contrib.auth import logout, authenticate, login
 
 from .models import MusicAdvice, UserProfile
 from .forms import MusicAdviceForm, SignUpForm
-from .modules.views_utils import Templates, save_new_music_advice, update_music_advice, create_new_user
+from .modules.views_utils import Templates, save_new_music_advice, update_music_advice, create_new_user, get_user
 
 
 # Sample view for basic testing
@@ -21,7 +21,6 @@ def home(request: HttpRequest) -> HttpResponse:
     return render(request, Templates.HOME, data)
 
 
-# TODO: better this than a series of if checks?
 def signup(request: HttpRequest) -> HttpResponse:
     match request.method:
         case 'GET':
@@ -31,9 +30,7 @@ def signup(request: HttpRequest) -> HttpResponse:
             form = SignUpForm(request.POST)
             if not create_new_user(form):
                 return render(request, Templates.SIGNUP, {'form': form})
-            username = request.POST['username']
-            password = request.POST['password1']
-            user = authenticate(request, username=username, password=password)
+            user = get_user(request)
             if user is not None:
                 login(request, user)
             else:
@@ -55,14 +52,15 @@ def logout_user(request: HttpRequest):
 # TODO: Is `view_util` and the bool return the best way?
 @login_required
 def add_music_advice(request: HttpRequest) -> HttpResponse:
-    if request.method == 'GET':
-        form = MusicAdviceForm()
-        return render(request, Templates.ADD_MUSIC_ADVICE, {'form': form, 'submit': 'core:add_music_advice'})
-    if request.method == 'POST':
-        is_save_successful = save_new_music_advice(request)
-        if not is_save_successful:
-            return HttpResponse(status=400)
-        return HttpResponse(status=200)
+    match request.method:
+        case 'GET':
+            form = MusicAdviceForm()
+            return render(request, Templates.ADD_MUSIC_ADVICE, {'form': form, 'submit': 'core:add_music_advice'})
+        case 'POST':
+            is_save_successful = save_new_music_advice(request)
+            if not is_save_successful:
+                return HttpResponse(status=400)
+            return HttpResponse(status=200)
     return HttpResponse(status=405)
 
 
@@ -71,13 +69,14 @@ def edit_music_advice(request: HttpRequest, pk: str) -> HttpResponse:
     music_advice = get_object_or_404(MusicAdvice, pk=pk)
     if music_advice.user != request.user:
         return HttpResponse(status=403)
-    if request.method == 'GET':
-        form = MusicAdviceForm(instance=music_advice)
-        return render(request, Templates.ADD_MUSIC_ADVICE, {'form': form, 'submit': 'core:edit_music_advice', 'pk': pk})
-    if request.method == 'POST':
-        if not update_music_advice(request, music_advice):
-            return HttpResponse(400)
-        return HttpResponse(status=200)
+    match request.method:
+        case 'GET':
+            form = MusicAdviceForm(instance=music_advice)
+            return render(request, Templates.ADD_MUSIC_ADVICE, {'form': form, 'submit': 'core:edit_music_advice', 'pk': pk})
+        case 'POST':
+            if not update_music_advice(request, music_advice):
+                return HttpResponse(400)
+            return HttpResponse(status=200)
     return HttpResponse(status=405)
 
 

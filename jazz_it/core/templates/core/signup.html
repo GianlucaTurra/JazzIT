@@ -1,5 +1,8 @@
 {% extends "core/base.html" %}
-
+{% block extra %}
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
 {% block content %}
     <div class="px-6 py-8 flex flex-col items-center justify-normal md:h-screen mx-auto">
         <div class="p-6 space-y-4 w-full md:mt-0 sm:max-w-md">
@@ -21,20 +24,11 @@
                     </div>
                 {% endif %}
                 <div class="flex items-center mt-2">
-                    <button class="w-full px-4 py-2 mt-4 bg-secondary rounded-2xl text-slate-50 text-m font-semibold">
-                        Login
+                    <button class="text-main w-full px-4 py-2 mt-4 bg-secondary rounded-2xl text-slate-50 text-m font-semibold">
+                        Submit
                     </button>
                 </div>
             </form>
         </div>
     </div>
-    <style>
-    {#TODO: Why the fuck does it not work with the custom class?#}
-        .field-label {
-            color: var(--color-label);
-        }
-        .errorlist { /* django class for form's errors */
-            color: var(--color-error);
-        }
-    </style>
 {% endblock content %}

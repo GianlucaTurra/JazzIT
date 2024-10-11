@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate
 from django.http import HttpRequest
 from django.forms import ModelForm
 from django.contrib.auth.models import User
@@ -24,6 +25,12 @@ def create_new_user(form: SignUpForm) -> bool:
     profile = UserProfile(user=user)
     profile.save()
     return True
+
+
+def get_user(request: HttpRequest) -> User:
+    username = request.POST['username']
+    password = request.POST['password1']
+    return authenticate(request, username=username, password=password)
 
 
 # TODO: il nome e la gestione sono da rivedere
