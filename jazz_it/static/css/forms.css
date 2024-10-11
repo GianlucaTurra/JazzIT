@@ -1,0 +1,7 @@
+.field-label {
+    color: var(--color-label);
+}
+
+.errorlist { /* django class for form's errors */
+    color: var(--color-error);
+}
