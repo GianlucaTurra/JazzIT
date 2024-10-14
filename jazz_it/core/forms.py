@@ -4,24 +4,23 @@ from django.contrib.auth.models import User
 from django import forms
 
 from .models import MusicAdvice
+from .validators import validate_email
 
-
-INPUT_CLASSES = 'border border-extra text-main rounded-lg block w-full'
+INPUT_CLASSES = 'border border-extra rounded-lg block w-full text-inputs'
 
 
 class LoginForm(AuthenticationForm):
-    """Django Form for user login
 
-    Form input fields are defined here wile labels and input button are in the template
-    """
-    username = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Username',
-        'class': INPUT_CLASSES
-    }))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Password',
-        'class': INPUT_CLASSES
-    }))
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'class': INPUT_CLASSES, 'placeholder': _('Username')}),
+        label=_('Username'),
+        required=True,
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': INPUT_CLASSES, 'placeholder': _('Password')}),
+        label=_('Password'),
+        required=True,
+    )
 
 
 class SignUpForm(UserCreationForm):
@@ -38,7 +37,8 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': INPUT_CLASSES, 'placeholder': _('Enter your email')}), 
         label=_('Email'),
-        required=True
+        required=True,
+        validators=[validate_email]
     )
     password1 = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': INPUT_CLASSES, 'placeholder': _('Enter your password')}), 

@@ -47,7 +47,9 @@ module.exports = {
       main: 'var(--color-main)',
       secondary: 'var(--color-secondary)',
       extra: 'var(--color-extra)',
-      highlight: 'var(--color-highlight)'
+      highlight: 'var(--color-highlight)',
+      input: 'var(--color-input)',
+      error: 'var(--color-error)'
     },
   },
   plugins: [

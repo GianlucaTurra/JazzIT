@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate
 from django.http import HttpRequest
 from django.forms import ModelForm
 from django.contrib.auth.models import User
@@ -17,14 +18,19 @@ class Templates:
     SIGNUP = 'core/signup.html'
 
 
-def create_new_user(request: HttpRequest) -> bool:
-    form = SignUpForm(request.POST)
+def create_new_user(form: SignUpForm) -> bool:
     if not form.is_valid():
         return False
     user: User = form.save()
     profile = UserProfile(user=user)
     profile.save()
     return True
+
+
+def get_user(request: HttpRequest) -> User:
+    username = request.POST['username']
+    password = request.POST['password1']
+    return authenticate(request, username=username, password=password)
 
 
 # TODO: il nome e la gestione sono da rivedere

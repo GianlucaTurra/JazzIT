@@ -3,7 +3,7 @@
   }
 
   .origin-0 {
-    transform-origin: 0%;
+    transform-origin: 0;
   }
 
   input:focus ~ label,
@@ -14,7 +14,7 @@
   select:not([value='']):valid ~ label {
     /* @apply transform; scale-75; -translate-y-6; */
     --tw-translate-x: 0;
-    --tw-translate-y: 0;
+    /*--tw-translate-y: 0;*/
     --tw-rotate: 0;
     --tw-skew-x: 0;
     --tw-skew-y: 0;
@@ -30,5 +30,5 @@
     /* @apply text-black; left-0; */
     --tw-text-opacity: 1;
     color: rgba(0, 0, 0, var(--tw-text-opacity));
-    left: 0px;
+    left: 0;
   }
