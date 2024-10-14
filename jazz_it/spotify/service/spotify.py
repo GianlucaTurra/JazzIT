@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from functools import cache
 
 import spotipy
 from spotipy import SpotifyClientCredentials
@@ -6,14 +7,14 @@ from dotenv import load_dotenv
 import os
 
 
-load_dotenv()
+# load_dotenv()
+sp = None
 
-auth_manager = SpotifyClientCredentials(
-    client_id=os.environ['SPOTIPY_CLIENT_ID'],
-    client_secret=os.environ['SPOTIPY_CLIENT_SECRET'],
-)
-sp = spotipy.Spotify(auth_manager=auth_manager)
 
+
+
+
+print(get_spotify_client())
 search = sp.search(q="track%3ACrazy%2520Train%2520artist%3AOzzy%2520Osbourne", limit=1)
 
 
